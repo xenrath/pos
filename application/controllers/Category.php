@@ -38,8 +38,8 @@ class Category extends CI_Controller {
 		 		'row' => $category
 		 		);
 		 	$this->template->load('template', 'product/category/category_form', $data);
-			}else{
-				echo "<script>alert('Data tidak ditemukan'); window.location'".site_url('category')."';</script>";
+		}else{
+			echo "<script>alert('Data tidak ditemukan'); window.location'".site_url('category')."';</script>";
 		}
 	}
 
@@ -52,17 +52,17 @@ class Category extends CI_Controller {
 			$this->category_m->edit($post);
 		}
 		if ($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data Berhasil Di Simpan');</script>";
+			$this->session->set_flashdata('success', 'Data berhasil disimpan');
 		}
-		echo "<script>window.location='".site_url('category')."';</script>";
+		redirect('category');
 	}
 
 	public function del($id)
 	{
 		$this->category_m->del($id);
 		if ($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data Berhasil Di Hapus');</script>";
+			e$this->session->set_flashdata('success', 'Data berhasil dihapus');
 		}
-		echo "<script>window.location='".site_url('category')."';</script>";
+		redirect('category');
 	}
 }

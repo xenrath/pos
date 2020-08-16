@@ -24,7 +24,7 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th style="width: 5%;">#</th>
 						<th>Username</th>
 						<th>Name</th>
 						<th>Address</th>
