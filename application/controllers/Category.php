@@ -61,7 +61,7 @@ class Category extends CI_Controller {
 	{
 		$this->category_m->del($id);
 		if ($this->db->affected_rows() > 0) {
-			e$this->session->set_flashdata('success', 'Data berhasil dihapus');
+			$this->session->set_flashdata('success', 'Data berhasil dihapus');
 		}
 		redirect('category');
 	}
