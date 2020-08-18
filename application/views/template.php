@@ -138,7 +138,7 @@
               <a href="<?=site_url('unit') ?>"><i class="fa fa-circle-o"></i> Units</a>
             </li>
             <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
-              <a href="#"><i class="fa fa-circle-o"></i> Items</a>
+              <a href="<?=site_url('item') ?>"><i class="fa fa-circle-o"></i> Items</a>
             </li>
           </ul>
         </li>
