@@ -27,6 +27,10 @@
 						<th style="width: 5%;">#</th>
 						<th>Barcode</th>
 						<th>Name</th>
+						<th>Category</th>
+						<th>Unit</th>
+						<th>Price</th>
+						<th>Stock</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -39,6 +43,10 @@
 						<td><?=$no++?>.</td>
 						<td><?=$data->barcode?></td>
 						<td><?=$data->name?></td>
+						<td><?=$data->category_id?></td>
+						<td><?=$data->unit_id?></td>
+						<td><?=$data->price?></td>
+						<td><?=$data->stock?></td>
 						<td class="text-center" width="160px">
 							<a href="<?=site_url('item/edit/'.$data->item_id) ?>" class="btn btn-primary btn-xs">
 								<i class="fa fa-pencil"></i> Edit
