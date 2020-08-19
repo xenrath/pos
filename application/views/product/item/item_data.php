@@ -43,8 +43,8 @@
 						<td><?=$no++?>.</td>
 						<td><?=$data->barcode?></td>
 						<td><?=$data->name?></td>
-						<td><?=$data->category_id?></td>
-						<td><?=$data->unit_id?></td>
+						<td><?=$data->category_name?></td>
+						<td><?=$data->unit_name?></td>
 						<td><?=$data->price?></td>
 						<td><?=$data->stock?></td>
 						<td class="text-center" width="160px">
