@@ -70,18 +70,18 @@ class Item extends CI_Controller {
 
 	public function process()
 	{
+		$config['upload_path']          = './uploads/product/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 2048;
+        $config['file_name']            = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
+        $this->load->library('upload', $config);
+
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
 			if ($this->item_m->check_barcode($post['barcode'])->num_rows() > 0) {
 				$this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai barang lain");				
 				redirect('item/add');
 			}else{
-				$config['upload_path']          = './uploads/product';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                $config['max_size']             = 2048;
-                $config['file_name']            = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
-                $this->load->library('upload', $config);
-
 				if (@$_FILES['image']['name'] != null) {
 					if ($this->upload->do_upload('image')) {
 						$post['image'] = $this->upload->data('file_name');
@@ -110,7 +110,35 @@ class Item extends CI_Controller {
 				$this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai barang lain");				
 				redirect('item/edit/'. $post['id']);
 			}else{
-				$this->item_m->edit($post);
+				if (@$_FILES['image']['name'] != null) {
+					if ($this->upload->do_upload('image')) {
+
+						$item = $this->item_m->get($post['id'])->row();
+						if ($item->image != null) {
+							$target_file = './uploads/product/'.$item->image;
+							unlink($target_file);
+						}
+						
+						$post['image'] = $this->upload->data('file_name');
+						$this->item_m->edit($post);
+						if ($this->db->affected_rows() > 0) {
+							$this->session->set_flashdata('success', 'Data berhasil disimpan');
+						}
+						redirect('item');
+
+					}else{
+						$error = $this->upload->display_errors();
+						$this->session->set_flashdata('error', $error);
+						redirect('item/edit');
+					}
+				}else{
+					$post['image'] = null;
+					$this->item_m->edit($post);
+					if ($this->db->affected_rows() > 0) {
+						$this->session->set_flashdata('success', 'Data berhasil disimpan');
+					}
+					redirect('item');
+				}
 			}
 		}
 	}
