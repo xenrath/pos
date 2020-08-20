@@ -23,7 +23,8 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<form action="<?=site_url('item/process') ?>" method="post">
+					<!-- <form action="<?=site_url('item/process') ?>" method="post"> -->
+					<?= form_open_multipart('item/process')  ?>
 						<div class="form-group">
 							<label>Barcode *</label>
 							<input type="hidden" name="id" value="<?=$row->item_id?>">
@@ -52,11 +53,16 @@
 							<input type="number" name="price" value="<?=$row->price?>" class="form-control" required>
 						</div>
 						<div class="form-group">
+							<label>Image</label>
+							<input type="file" name="image" class="form-control">
+						</div>
+						<div class="form-group">
 							<button type="submit" name="<?=$page?>" class="btn btn-success btn-flat">
 								<i class="fa fa-paper-plane"></i> Save</button>
 							<button type="reset" class="btn btn-flat">Reset</button>
 						</div>
-					</form>
+					<?= form_close() ?>
+					<!-- </form> -->
 				</div>
 			</div>
 		</div>
