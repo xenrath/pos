@@ -23,7 +23,6 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<!-- <form action="<?=site_url('item/process') ?>" method="post"> -->
 					<?= form_open_multipart('item/process')  ?>
 						<div class="form-group">
 							<label>Barcode *</label>
@@ -58,11 +57,11 @@
 						</div>
 						<div class="form-group">
 							<button type="submit" name="<?=$page?>" class="btn btn-success btn-flat">
-								<i class="fa fa-paper-plane"></i> Save</button>
+								<i class="fa fa-paper-plane"></i> Save
+							</button>
 							<button type="reset" class="btn btn-flat">Reset</button>
 						</div>
 					<?= form_close() ?>
-					<!-- </form> -->
 				</div>
 			</div>
 		</div>

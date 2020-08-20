@@ -82,7 +82,7 @@ class Item extends CI_Controller {
                 $config['file_name']            = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
                 $this->load->library('upload', $config);
 
-				if (@$_FILE['image']['name'] != null) {
+				if (@$_FILES['image']['name'] != null) {
 					if ($this->upload->do_upload('image')) {
 						$post['image'] = $this->upload->data('file_name');
 						$this->item_m->add($post);
@@ -90,8 +90,9 @@ class Item extends CI_Controller {
 							$this->session->set_flashdata('success', 'Data berhasil disimpan');
 						}
 						redirect('item');
+
 					}else{
-						$error = $this->upload->display_error();
+						$error = $this->upload->display_errors();
 						$this->session->set_flashdata('error', $error);
 						redirect('item/add');
 					}
@@ -104,7 +105,6 @@ class Item extends CI_Controller {
 					redirect('item');
 				}
 			}
-			$this->item_m->add($post);
 		}else if (isset($_POST['edit'])) {
 			if ($this->item_m->check_barcode($post['barcode'], $post['id'])->num_rows() > 0) {
 				$this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai barang lain");				
