@@ -42,7 +42,15 @@
 					 ?>
 					<tr>
 						<td><?=$no++?>.</td>
-						<td><?=$data->barcode?></td>
+						<td>
+							<?=$data->barcode?>
+							<br>
+							<a href="<?=site_url('item/barcode_qrcode/'.$data->item_id) ?>" class="btn btn-default btn-xs">
+								Generate
+								<i class="fa fa-barcode" style="margin-left: 2px;"></i>
+								<i class="fa fa-qrcode" style="margin-left: 2px;"></i>
+							</a>	
+						</td>
 						<td><?=$data->name?></td>
 						<td><?=$data->category_name?></td>
 						<td><?=$data->unit_name?></td>
