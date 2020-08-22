@@ -33,6 +33,7 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
             'Symfony\\Component\\PropertyInfo\\' => 31,
             'Symfony\\Component\\PropertyAccess\\' => 33,
             'Symfony\\Component\\OptionsResolver\\' => 34,
+            'Svg\\' => 4,
         ),
         'P' => 
         array (
@@ -42,12 +43,17 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
         array (
             'MyCLabs\\Enum\\' => 13,
         ),
+        'F' => 
+        array (
+            'FontLib\\' => 8,
+        ),
         'E' => 
         array (
             'Endroid\\QrCode\\' => 15,
         ),
         'D' => 
         array (
+            'Dompdf\\' => 7,
             'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
@@ -101,6 +107,10 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
+        'Svg\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+        ),
         'Picqer\\Barcode\\' => 
         array (
             0 => __DIR__ . '/..' . '/picqer/php-barcode-generator/src',
@@ -109,9 +119,17 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
         'Endroid\\QrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/endroid/qr-code/src',
+        ),
+        'Dompdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
         'DASPRiD\\Enum\\' => 
         array (
@@ -127,7 +145,23 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Sabberworm\\CSS' => 
+            array (
+                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
+        'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
+        'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
+        'HTML5_Tokenizer' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
+        'HTML5_TreeBuilder' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
@@ -139,6 +173,7 @@ class ComposerStaticInit289eef61493f2648303d3114a40dd1a0
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit289eef61493f2648303d3114a40dd1a0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit289eef61493f2648303d3114a40dd1a0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit289eef61493f2648303d3114a40dd1a0::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit289eef61493f2648303d3114a40dd1a0::$classMap;
 
         }, null, ClassLoader::class);
