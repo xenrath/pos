@@ -44,6 +44,10 @@
 			<img src="<?= base_url('uploads/qr-code/item-'.$row->barcode.'.png')?>" style="height:115px">
 			<br>
 			<?= $row->barcode ?>
+			<br>
+			<a href="<?=site_url('item/qrcode_print/'.$row->item_id) ?>" target="_blank" class="btn btn-default btn-xs btn-sm">
+				<i class="fa fa-print"></i> Print
+			</a>
 		</div>
 	</div>
 </section>
