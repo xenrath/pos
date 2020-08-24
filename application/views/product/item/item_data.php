@@ -30,50 +30,74 @@
 						<th>Category</th>
 						<th>Unit</th>
 						<th>Price</th>
-						<th>Image</th>
 						<th>Stock</th>
+						<th>Image</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php 
-					$no = 1;
-					foreach ($row->result() as $key => $data) {
-					 ?>
-					<tr>
-						<td><?=$no++?>.</td>
-						<td>
-							<?=$data->barcode?>
-							<br>
-							<a href="<?=site_url('item/barcode_qrcode/'.$data->item_id) ?>" class="btn btn-default btn-xs">
-								Generate
-								<i class="fa fa-barcode" style="margin-left: 2px;"></i>
-								<i class="fa fa-qrcode" style="margin-left: 2px;"></i>
-							</a>	
-						</td>
-						<td><?=$data->name?></td>
-						<td><?=$data->category_name?></td>
-						<td><?=$data->unit_name?></td>
-						<td><?=$data->price?></td>
-						<td>
-							<?php if ( $data->image != null) { ?>
-								<img src="<?= base_url('uploads/product/'.$data->image)?>" style="height:75px">
-							<?php } ?>
-						</td>
-						<td><?=$data->stock?></td>
-						<td class="text-center" width="160px">
-							<a href="<?=site_url('item/edit/'.$data->item_id) ?>" class="btn btn-primary btn-xs">
-								<i class="fa fa-pencil"></i> Edit
-							</a>
-							<a href="<?=site_url('item/del/'.$data->item_id) ?>" onclick="return confirm('Hapus Data?')" class="btn btn-danger btn-xs">
-								<i class="fa fa-trash"></i> Delete
-							</a>
-						</td>
-					</tr>
-				<?php } ?>
+					<!-- <?php 
+						$no = 1;
+						foreach ($row->result() as $key => $data) {
+						 ?>
+						<tr>
+							<td><?=$no++?>.</td>
+							<td>
+								<?=$data->barcode?>
+								<br>
+								<a href="<?=site_url('item/barcode_qrcode/'.$data->item_id) ?>" class="btn btn-default btn-xs">
+									Generate
+									<i class="fa fa-barcode" style="margin-left: 2px;"></i>
+									<i class="fa fa-qrcode" style="margin-left: 2px;"></i>
+								</a>	
+							</td>
+							<td><?=$data->name?></td>
+							<td><?=$data->category_name?></td>
+							<td><?= $data->unit_name?></td>
+							<td><?= indo_currency($data->price) ?></td>
+							<td>
+								<?php if ( $data->image != null) { ?>
+									<img src="<?= base_url('uploads/product/'.$data->image)?>" style="height:75px">
+								<?php } ?>
+							</td>
+							<td><?=$data->stock?></td>
+							<td class="text-center" width="160px">
+								<a href="<?=site_url('item/edit/'.$data->item_id) ?>" class="btn btn-primary btn-xs">
+									<i class="fa fa-pencil"></i> Edit
+								</a>
+								<a href="<?=site_url('item/del/'.$data->item_id) ?>" onclick="return confirm('Hapus Data?')" class="btn btn-danger btn-xs">
+									<i class="fa fa-trash"></i> Delete
+								</a>
+							</td>
+						</tr>
+					<?php } ?> -->
 				</tbody>
 			</table>
 		</div>
 	</div>
+
+<script>
+    $(document).ready(function(){
+      $('#dataTable').DataTable({
+      	"processing": true,
+        "serverSide": true,
+        "ajax": {
+        	"url" : "<?= site_url('item/get_ajax') ?>",
+        	"type" : "POST"
+        },
+        "columnDefs" : [
+        	{
+        		"targets" : [7, -1],
+        		"className" : "text-center"
+        	},
+        	{
+        		"targets" : [7, -1],
+        		"orderable" : false
+        	}
+        ],
+        "order" : []
+      })
+    })
+</script>
 	
 </section>
