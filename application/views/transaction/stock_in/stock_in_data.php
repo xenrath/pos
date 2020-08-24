@@ -1,11 +1,11 @@
 <section class="content-header">
-  <h1> Categories
-    <small>Kategori Produk</small>
+  <h1> Stock In
+    <small>Barang Masuk / Pembelian</small>
   </h1>
   <ol class="breadcrumb">
     <li><i class="fa fa-dashboard"></i></a></li>
-    <li>Product</li>
-    <li class="active">Categories</li>
+    <li>Transaction</li>
+    <li class="active">Stock In</li>
   </ol>
 </section>
 
@@ -30,7 +30,7 @@
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<!-- <tbody>
 					<?php 
 					$no = 1;
 					foreach ($row->result() as $key => $data) {
@@ -48,7 +48,7 @@
 						</td>
 					</tr>
 				<?php } ?>
-				</tbody>
+				</tbody> -->
 			</table>
 		</div>
 	</div>

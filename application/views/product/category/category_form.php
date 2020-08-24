@@ -3,8 +3,10 @@
     <small>Kategori Produk</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-    <li class="active">Categories</li>
+    <li><i class="fa fa-dashboard"></i></a></li>
+    <li>Product</li>
+    <li>Categories</li>
+    <li class="active"><?=ucfirst($page) ?></li>
   </ol>
 </section>
 
