@@ -66,7 +66,9 @@
 							<label for="detail">Supplier</label>
 							<select name="supplier" id="supplier" class="form-control">
 								<option value="">- Pilih -</option>
-								
+								<?php foreach ($supplier as $s => $data) { ?>
+									<option value="<?=$data->supplier_id?>"><?=$data->name?></option>
+								<?php } ?>
 							</select>
 						</div>
 						<div class="form-group">
@@ -85,3 +87,69 @@
 	</div>
 
 </section>
+
+<div class="modal fade" id="modal-item">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Select Product Item</h4>
+			</div>
+			<div class="modal-body table-responsive">
+				<table class="table table-bordered table-striped" id="dataTable">
+					<thead>
+						<tr>
+							<th>Barcode</th>
+							<th>Name</th>
+							<th>Unit</th>
+							<th>Price</th>
+							<th>Stock</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($item as $i => $data) { ?>
+						<tr>
+							<td><?=$data->barcode?></td>
+							<td><?=$data->name?></td>
+							<td><?=$data->unit_name?></td>
+							<td class="text-right"><?=indo_currency($data->price)?></td>
+							<td class="text-right"><?=$data->stock?></td>
+							<td class="text-right">
+								<button type="button" class="btn btn-info btn-xs" id="select"
+									data-id="<?=$data->item_id?>"
+									data-barcode="<?=$data->barcode?>"
+									data-name="<?=$data->name?>"
+									data-unit="<?=$data->unit_name?>"
+									data-stock="<?=$data->stock?>"
+								>
+									<i class="fa fa-check"></i> Select</button>
+							</td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$(document).on('click', '#select', function(){
+			var item_id = $(this).data('id');
+			var barcode = $(this).data('barcode');
+			var name = $(this).data('name');
+			var unit_name = $(this).data('unit');
+			var stock = $(this).data('stock');
+			$('#item_id').val(item_id);
+			$('#barcode').val(barcode);
+			$('#item_name').val(name);
+			$('#unit_name').val(unit_name);
+			$('#stock').val(stock);
+			$('#modal-item').modal('hide');
+		})
+	})
+</script>

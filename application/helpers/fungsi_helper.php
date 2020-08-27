@@ -26,5 +26,5 @@
 
 	function indo_currency($value)
 	{
-	    return 'Rp. ' . number_format($value, 0, ",", ".");
+	    return "Rp. " . number_format($value, 2, ',', '.');
 	}
