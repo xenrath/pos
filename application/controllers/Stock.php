@@ -7,15 +7,15 @@ class Stock extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
-		$this->load->model(['item_m', 'supplier_m']);
+		$this->load->model(['item_m', 'supplier_m', 'stock_m']);
 	}
 
-	function stock_in_data()
+	public function stock_in_data()
 	{
 		$this->template->load('template', 'transaction/stock_in/stock_in_data');
 	}
 
-	function stock_in_add()
+	public function stock_in_add()
 	{
 		$item = $this->item_m->get()->result();
 		$supplier = $this->supplier_m->get()->result();
@@ -23,10 +23,17 @@ class Stock extends CI_Controller {
 		$this->template->load('template', 'transaction/stock_in/stock_in_form', $data);
 	}
 
-	function process()
+	public function process()
 	{
 		if (isset($_POST['in_add'])) {
-			echo "in add";
+			$post = $this->input->post(null, TRUE);
+			$this->stock_m->add_stock_in($post);
+			$this->item_m->update_stock_in($post);
+
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('success', 'Data Stock-In berhasil disimpan');
+			}
+			redirect('stock/in');
 		}
 	}
 

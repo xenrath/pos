@@ -76,7 +76,7 @@
 							<input type="number" name="qty" id="qty" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-success btn-flat">
+							<button type="submit" name="in_add" class="btn btn-success btn-flat">
 								<i class="fa fa-paper-plane"></i> Save</button>
 							<button type="reset" class="btn btn-flat">Reset</button>
 						</div>
