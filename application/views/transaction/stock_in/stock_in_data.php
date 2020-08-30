@@ -14,10 +14,10 @@
 	<?php $this->view('messages') ?>
 	<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Data Categories</h3>
+			<h3 class="box-title">Data Stock In</h3>
 			<div class="pull-right">
-				<a href="<?=site_url('category/add') ?>" class="btn btn-primary btn-flat">
-					<i class="fa fa-user-plus"></i> Create
+				<a href="<?=site_url('stock/in/add') ?>" class="btn btn-primary btn-flat">
+					<i class="fa fa-user-plus"></i> Add Stock In
 				</a>
 			</div>
 		</div>
@@ -26,29 +26,35 @@
 				<thead>
 					<tr>
 						<th style="width: 5%;">#</th>
-						<th>Name</th>
+						<th>Barcode</th>
+						<th>Product Item</th>
+						<th>Qty</th>
+						<th>Date</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<!-- <tbody>
+				<tbody>
 					<?php 
-					$no = 1;
-					foreach ($row->result() as $key => $data) {
-					 ?>
+						$no = 1;
+						foreach ($row as $key => $data) {
+					?>
 					<tr>
 						<td><?=$no++?>.</td>
-						<td><?=$data->name?></td>
+						<td><?=$data->barcode?></td>
+						<td><?=$data->item_name?></td>
+						<td class="text-right"><?=$data->qty?></td>
+						<td class="text-center"><?=indo_date($data->date)?></td>
 						<td class="text-center" width="160px">
-							<a href="<?=site_url('category/edit/'.$data->category_id) ?>" class="btn btn-primary btn-xs">
-								<i class="fa fa-pencil"></i> Edit
+							<a href="<?=site_url('stock/in/detail/'.$data->stock_id) ?>" class="btn btn-info btn-xs">
+								<i class="fa fa-eye"></i> Edit
 							</a>
-							<a href="<?=site_url('category/del/'.$data->category_id) ?>" onclick="return confirm('Hapus Data?')" class="btn btn-danger btn-xs">
+							<a href="<?=site_url('stock/in/del/'.$data->stock_id) ?>" onclick="return confirm('Hapus Data?')" class="btn btn-danger btn-xs">
 								<i class="fa fa-trash"></i> Delete
 							</a>
 						</td>
 					</tr>
-				<?php } ?>
-				</tbody> -->
+					<?php } ?>
+				</tbody>
 			</table>
 		</div>
 	</div>

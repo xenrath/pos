@@ -12,7 +12,8 @@ class Stock extends CI_Controller {
 
 	public function stock_in_data()
 	{
-		$this->template->load('template', 'transaction/stock_in/stock_in_data');
+		$data['row'] = $this->stock_m->get_stock_in()->result();
+		$this->template->load('template', 'transaction/stock_in/stock_in_data', $data);
 	}
 
 	public function stock_in_add()
