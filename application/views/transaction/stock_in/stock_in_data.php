@@ -45,8 +45,15 @@
 						<td class="text-right"><?=$data->qty?></td>
 						<td class="text-center"><?=indo_date($data->date)?></td>
 						<td class="text-center" width="160px">
-							<a href="<?=site_url('stock/in/detail/'.$data->stock_id) ?>" class="btn btn-info btn-xs">
-								<i class="fa fa-eye"></i> Edit
+							<a class="btn btn-info btn-xs" id="select" data-toggle="modal" data-target="#modal-detail"
+								data-barcode="<?=$data->barcode ?>"
+								data-item_name="<?=$data->item_name ?>"
+								data-detail="<?=$data->detail ?>"
+								data-supplier_name="<?=$data->supplier_name ?>"
+								data-qty="<?=$data->qty ?>"
+								data-date="<?=indo_date($data->date)?>"
+							>
+								<i class="fa fa-eye"></i> Detail
 							</a>
 							<a href="<?=site_url('stock/in/del/'.$data->stock_id.'/'.$data->item_id) ?>" onclick="return confirm('Hapus Data?')" class="btn btn-danger btn-xs">
 								<i class="fa fa-trash"></i> Delete
@@ -60,3 +67,63 @@
 	</div>
 	
 </section>
+
+<div class="modal fade" id="modal-detail">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Stock In Detail</h4>
+			</div>
+			<div class="modal-body table-responsive">
+				<table class="table table-bordered no-margin">
+					<tr>
+						<th style="width: 50%">Barcode</th>
+						<td><span id="barcode"></span></td>
+					</tr>
+					<tr>
+						<th>Item Name</th>
+						<td><span id="item_name"></span></td>
+					</tr>
+					<tr>
+						<th>Detail</th>
+						<td><span id="detail"></span></td>
+					</tr>
+					<tr>
+						<th>Supplier Name</th>
+						<td><span id="supplier_name"></span></td>
+					</tr>
+					<tr>
+						<th>Qty</th>
+						<td><span id="qty"></span></td>
+					</tr>
+					<tr>
+						<th>Date</th>
+						<td><span id="date"></span></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$(document).on('click', '#select', function(){
+			var barcode = $(this).data('barcode');
+			var item_name = $(this).data('item_name');
+			var detail = $(this).data('detail');
+			var supplier_name = $(this).data('supplier_name');
+			var qty = $(this).data('qty');
+			var date = $(this).data('date');
+			$('#barcode').text(barcode);
+			$('#item_name').text(item_name);
+			$('#detail').text(detail);
+			$('#supplier_name').text(supplier_name);
+			$('#qty').text(qty);
+			$('#date').text(date);
+		})
+	})
+</script>
