@@ -32,9 +32,9 @@
 				</thead>
 				<tbody>
 					<?php 
-					$no = 1;
-					foreach ($row->result() as $key => $data) {
-					 ?>
+						$no = 1;
+						foreach ($row->result() as $key => $data) {
+					?>
 					<tr>
 						<td><?=$no++?>.</td>
 						<td><?=$data->name?></td>
@@ -47,7 +47,7 @@
 							</a>
 						</td>
 					</tr>
-				<?php } ?>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>

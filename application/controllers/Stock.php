@@ -24,6 +24,21 @@ class Stock extends CI_Controller {
 		$this->template->load('template', 'transaction/stock_in/stock_in_form', $data);
 	}
 
+	public function stock_in_del()
+	{
+		$stock_id = $this->uri->segment(4);
+		$item_id = $this->uri->segment(5);
+		$qty = $this->stock_m->get($stock_id)->row()->qty;
+		$data = ['qty' => $qty, 'item_id' => $item_id];
+		$this->item_m->update_stock_out($data);
+		$this->stock_m->del($stock_id);
+
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data Stock-In berhasil dihapus');
+		}
+		redirect('stock/in');
+	}
+
 	public function process()
 	{
 		if (isset($_POST['in_add'])) {
