@@ -62,3 +62,7 @@ $route['customer/del/(:num)'] = 'Pelanggan/del/$1';
 $route['stock/in'] = 'Stock/stock_in_data';
 $route['stock/in/add'] = 'Stock/stock_in_add';
 $route['stock/in/del/(:num)/(:num)'] = 'Stock/stock_in_del';
+
+$route['stock/out'] = 'Stock/stock_out_data';
+$route['stock/out/add'] = 'Stock/stock_out_add';
+$route['stock/out/del/(:num)/(:num)'] = 'Stock/stock_out_del';
