@@ -17,7 +17,7 @@
         <span class="info-box-icon bg-aqua"><i class="fa fa-th"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Items</span>
-          <span class="info-box-number">90</span>
+          <span class="info-box-number"><?=$this->fungsi->count_item() ?></span>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
         <span class="info-box-icon bg-red"><i class="fa fa-truck"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Supplier</span>
-          <span class="info-box-number">4</span>
+          <span class="info-box-number"><?=$this->fungsi->count_supplier() ?></span>
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
         <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Customers</span>
-          <span class="info-box-number">60</span>
+          <span class="info-box-number"><?=$this->fungsi->count_customer() ?></span>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
         <span class="info-box-icon bg-yellow"><i class="fa fa-user-plus"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Users</span>
-          <span class="info-box-number">3</span>
+          <span class="info-box-number"><?=$this->fungsi->count_user() ?></span>
         </div>
       </div>
     </div>        
