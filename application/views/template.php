@@ -121,9 +121,7 @@
           <a href="<?=site_url('supplier') ?>"><i class="fa fa-truck"></i><span>Supplier</span></a>
         </li>
         <li <?= $this->uri->segment(1) == 'customer' ? 'class="active"' : '' ?>>
-          <a href="<?=site_url('customer') ?>">
-            <i class="fa fa-user"></i><span>Customers</span>
-          </a>
+          <a href="<?=site_url('customer') ?>"><i class="fa fa-user"></i><span>Customers</span></a>
         </li>
         <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
           <a href="#">

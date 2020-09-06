@@ -11,7 +11,6 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="clearfix visible-sm-block"></div>
 	<div class="row">
 		<div class="col-lg-4">
 			<div class="box box-widget">
@@ -45,6 +44,9 @@
 								<div>
 									<select id="customer" class="form-control">
 										<option value="">Umum</option>
+										<?php foreach ($customer as $cust => $value) { ?>
+											<option value="<?=$value->customer_id ?>"><?=$value->name ?></option>
+										<?php } ?>
 									</select>
 								</div>
 							</td>
@@ -104,13 +106,14 @@
 			<div class="box box-widget">
 				<div class="box-body">
 					<div align="right">
-						<h4>Invoice <b><span id="invoice">MP2009050001</span></b></h4>
+						<h4>Invoice <b><span id="invoice"><?=$invoice ?></span></b></h4>
 						<h1><b><span id="grand_total2" style="font-size: 50pt">0</span></b></h1>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="box box-widget">
@@ -138,6 +141,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="box box-widget">
