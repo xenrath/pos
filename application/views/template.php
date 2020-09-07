@@ -125,7 +125,7 @@
         </li>
         <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
           <a href="#">
-            <i class="fa fa-archive"></i> <span>Products</span>
+            <i class="fa fa-archive"></i><span>Products</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">

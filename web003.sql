@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 17, 2020 at 05:54 PM
+-- Generation Time: Sep 07, 2020 at 07:02 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -78,10 +78,25 @@ CREATE TABLE `p_item` (
   `category_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `price` int(11) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `stock` int(10) NOT NULL DEFAULT 0,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `p_item`
+--
+
+INSERT INTO `p_item` (`item_id`, `barcode`, `name`, `category_id`, `unit_id`, `price`, `image`, `stock`, `created`, `updated`) VALUES
+(6, '004', 'Silver Queen', 1, 2, 10000, NULL, 0, '2020-08-19 21:34:43', NULL),
+(7, '005', 'Teh Gelas', 2, 2, 5000, NULL, 0, '2020-08-19 21:43:52', NULL),
+(8, '006', 'Teh Kotak', 2, 2, 5000, NULL, 0, '2020-08-19 21:52:48', NULL),
+(9, '007', 'Susu Bendera', 1, 1, 10000, NULL, 0, '2020-08-20 10:04:02', NULL),
+(11, '009', 'Makanan', 1, 1, 3000, NULL, 0, '2020-08-20 10:26:33', NULL),
+(12, '010', 'Susu SGM', 1, 1, 20000, NULL, 0, '2020-08-20 10:33:19', NULL),
+(13, '011', 'Mie Samyang', 1, 2, 30000, NULL, 0, '2020-08-20 10:34:06', NULL),
+(16, '002', 'Thai Tea', 2, 2, 10000, 'item-200824-f1941cf9f8.png', 0, '2020-08-20 10:55:57', '2020-08-24 03:12:26');
 
 -- --------------------------------------------------------
 
@@ -130,6 +145,64 @@ INSERT INTO `supplier` (`supplier_id`, `name`, `phone`, `address`, `description`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_sale`
+--
+
+CREATE TABLE `t_sale` (
+  `sale_id` int(11) NOT NULL,
+  `invoice` varchar(50) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `total_price` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `final_price` int(11) NOT NULL,
+  `cash` int(11) NOT NULL,
+  `remaining` int(11) NOT NULL,
+  `note` text NOT NULL,
+  `date` date NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_stock`
+--
+
+CREATE TABLE `t_stock` (
+  `stock_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `type` enum('In','Out') NOT NULL,
+  `detail` varchar(200) NOT NULL,
+  `supplier_id` int(11) DEFAULT NULL,
+  `qty` int(10) NOT NULL,
+  `date` date NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_stock`
+--
+
+INSERT INTO `t_stock` (`stock_id`, `item_id`, `type`, `detail`, `supplier_id`, `qty`, `date`, `created`, `user_id`) VALUES
+(6, 16, 'In', 'Kulakan', 1, 10, '2020-09-02', '2020-09-02 15:50:39', 1),
+(8, 16, 'Out', 'Hilang', NULL, 5, '2020-09-02', '2020-09-02 16:14:04', 1),
+(10, 16, 'Out', 'Hilang', NULL, 1, '2020-09-02', '2020-09-02 16:15:47', 1),
+(11, 16, 'Out', 'Rusak', NULL, 5, '2020-09-02', '2020-09-02 17:42:13', 1),
+(13, 16, 'In', 'Kulakan', NULL, 11, '2020-09-02', '2020-09-02 17:43:57', 1),
+(14, 16, 'Out', 'Rusak', NULL, 1, '2020-09-02', '2020-09-02 17:44:09', 1),
+(16, 16, 'Out', 'Rusak', NULL, 1, '2020-09-02', '2020-09-02 20:16:59', 1),
+(17, 16, 'Out', 'Rusak', NULL, 11, '2020-09-04', '2020-09-04 11:36:05', 1),
+(18, 16, 'In', 'Kulakan', NULL, 12, '2020-09-04', '2020-09-04 11:37:08', 1),
+(19, 16, 'Out', 'Rusak', NULL, 11, '2020-09-04', '2020-09-04 11:37:32', 1),
+(25, 16, 'In', 'Kulakan', NULL, 12, '2020-09-04', '2020-09-04 12:38:05', 1),
+(26, 16, 'Out', 'Rusak', NULL, 1, '2020-09-04', '2020-09-04 13:28:35', 1),
+(27, 16, 'Out', 'Rusak', NULL, 9, '2020-09-04', '2020-09-04 13:28:45', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -170,6 +243,7 @@ ALTER TABLE `p_category`
 --
 ALTER TABLE `p_item`
   ADD PRIMARY KEY (`item_id`),
+  ADD UNIQUE KEY `barcode` (`barcode`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `unit_id` (`unit_id`);
 
@@ -184,6 +258,21 @@ ALTER TABLE `p_unit`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supplier_id`);
+
+--
+-- Indexes for table `t_sale`
+--
+ALTER TABLE `t_sale`
+  ADD PRIMARY KEY (`sale_id`);
+
+--
+-- Indexes for table `t_stock`
+--
+ALTER TABLE `t_stock`
+  ADD PRIMARY KEY (`stock_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `supplier_id` (`supplier_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user`
@@ -211,7 +300,7 @@ ALTER TABLE `p_category`
 -- AUTO_INCREMENT for table `p_item`
 --
 ALTER TABLE `p_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `p_unit`
@@ -224,6 +313,18 @@ ALTER TABLE `p_unit`
 --
 ALTER TABLE `supplier`
   MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `t_sale`
+--
+ALTER TABLE `t_sale`
+  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `t_stock`
+--
+ALTER TABLE `t_stock`
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -241,6 +342,14 @@ ALTER TABLE `user`
 ALTER TABLE `p_item`
   ADD CONSTRAINT `p_item_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `p_category` (`category_id`),
   ADD CONSTRAINT `p_item_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `p_unit` (`unit_id`);
+
+--
+-- Constraints for table `t_stock`
+--
+ALTER TABLE `t_stock`
+  ADD CONSTRAINT `t_stock_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `p_item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_stock_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
+  ADD CONSTRAINT `t_stock_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
