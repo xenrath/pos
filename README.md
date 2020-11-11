@@ -3,8 +3,6 @@ Aplikasi POS (Point of Sales)
 - Framework Codeigniter 3
 - Template AdminLTE 2.4.3
 
-Src : YT. YukCoding Media - POS
-
 Fitur :
 - Login multi user
 - Hak akses tiap user
